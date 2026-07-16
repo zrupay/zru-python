@@ -615,7 +615,7 @@ class IbanResourceMixin(ActionsResourceMixin):
         :param data: data to send
         :return: response dictionary
         """
-        return self._one_item_action(self.api_request.post_200,
+        return self._one_item_action(self.api_request.post,
                                      resource_id,
                                      'iban',
                                      data)
