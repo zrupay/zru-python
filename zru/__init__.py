@@ -1,5 +1,5 @@
 __title__ = 'ZRU Python'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'ZRU'
 __license__ = 'BSD 2-Clause'
 __copyright__ = 'Copyright 2024 ZRU'

@@ -43,7 +43,7 @@ setup(
     long_description_content_type="text/markdown",
     author='ZRU',
     author_email='support@zrupay.com',
-    download_url='https://github.com/zrupay/zru-python/archive/v1.0.0.tar.gz',
+    download_url='https://github.com/zrupay/zru-python/archive/v1.0.1.tar.gz',
     packages=find_packages(exclude=['tests']),
     install_requires=[
         'requests'
