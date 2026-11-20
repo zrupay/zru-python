@@ -72,14 +72,15 @@ client = ZRUClient(...)
 
 Following these steps will help you migrate your project from versions prior to 1.x.x, ensuring compatibility with the new `zru` module naming convention.
 
-## Quick Start Example
+# Quickstart Example
+
+## Create a Transaction
 
 ```python
 from zru import ZRUClient
 
 zru = ZRUClient('API_KEY', 'SECRET_KEY')
 
-# Create a transaction
 transaction = zru.Transaction({
     "currency": "EUR",
     "products": [{
@@ -87,8 +88,11 @@ transaction = zru.Transaction({
         "product_id": "PRODUCT-ID"
     }]
 })
+```
 
-# Create a transaction with product details
+## Create a Transaction with product details
+
+```python
 transaction = zru.Transaction({
     "currency": "EUR",
     "products": [{
@@ -100,43 +104,64 @@ transaction = zru.Transaction({
     }]
 })
 transaction.save()
+```
 
-# Get payment URLs
+## Get Transaction payment URLs
+
+```python
 print('Payment URL:', transaction.pay_url)     # URL for user to complete the payment
 print('Iframe URL:', transaction.iframe_url)  # URL for embedding in an iframe
+```
 
-# List available plans
+## List available Plans
+
+```python
 plans_paginator = zru.Plan.list()
 print('Plan Count:', plans_paginator.count)
 print('Plan Results:', plans_paginator.results)    # List of plans
 plans_paginator.get_next_list()  # Fetch next set of plans
+```
 
-# Get a product, update its price, and save changes
+## Get a product, update its price, and save changes
+
+```python
 product = zru.Product.get("PRODUCT-ID")
 product.price = 10
 product.save()
+```
 
-# Create and delete a tax
+## Create and delete a Tax
+
+```python
 tax = zru.Tax({
     "name": "Tax",
     "percent": 5
 })
 tax.save()
 tax.delete()
+```
 
-# Check if a transaction is paid
+## Check if a Transaction is paid
+
+```python
 transaction = zru.Transaction.get("TRANSACTION-ID")
 is_paid = transaction.status == 'D'  # 'D' stands for 'Paid'
 print('Transaction Paid:', is_paid)
+```
 
-# Create a subscription
+## Create a Subscription
+
+```python
 subscription = zru.Subscription({
     "currency": "EUR",
     "plan_id": "PLAN-ID",
     "note": "Note example"
 })
+```
 
-# Create a subscription with plan details
+## Create a Subscription with plan details
+
+```python
 subscription = zru.Subscription({
     "currency": "EUR",
     "plan": {
@@ -149,12 +174,18 @@ subscription = zru.Subscription({
     "note": "Note example"
 })
 subscription.save()
+```
 
-# Get subscription payment URLs
+## Get Subscription payment URLs
+
+```python
 print('Subscription Payment URL:', subscription.pay_url)     # URL for user to complete the subscription payment
 print('Subscription Iframe URL:', subscription.iframe_url)  # URL for embedding in an iframe
+```
 
-# Handling notifications
+## Handling Notifications
+
+```python
 notification_data = zru.NotificationData(JSON_DICT_RECEIVED_FROM_ZRU)
 is_paid = notification_data.is_status_done   # Check if payment is completed
 print('Notification Payment Status:', is_paid)
